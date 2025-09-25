@@ -121,11 +121,6 @@ int main(void)
   int second = 0;
   int minute = 47;
   int hour   = 3;
-
-
-
-
-
   setNumberOnClock(second/5);
   setNumberOnClock(minute/5);
   setNumberOnClock(hour);
@@ -136,11 +131,11 @@ int main(void)
       clearNumberOnClock(hour);
 	  clearNumberOnClock(second/5);
       second++;
-	  if (second >= 59) {
+	  if (second >= 60) {
 		  second = 0;
           minute++;
 
-	      if ((minute)  >= 59) {
+	      if ((minute)  >= 60) {
 	    	  minute =  0;
 	    	  hour = (hour+1)%12;
 	      }
@@ -149,7 +144,6 @@ int main(void)
 	  setNumberOnClock(hour);
 	  setNumberOnClock(minute/5);
 	  setNumberOnClock(second/5);
-
 	  HAL_Delay(10);
   }
   /* USER CODE END 3 */
