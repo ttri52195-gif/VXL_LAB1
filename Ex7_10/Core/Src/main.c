@@ -55,7 +55,7 @@ uint16_t led[12] =
 	LED_10_Pin,
 	LED_11_Pin,
 	LED_12_Pin
-	};
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -117,43 +117,40 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  clearAllClock();
+//6h47
   int second = 0;
-  int minute = 0;
-  int hour = 0;
+  int minute = 47;
+  int hour   = 3;
 
+
+
+
+
+  setNumberOnClock(second/5);
+  setNumberOnClock(minute/5);
+  setNumberOnClock(hour);
 
   while (1)
   {
+      clearNumberOnClock(minute/5);
+      clearNumberOnClock(hour);
+	  clearNumberOnClock(second/5);
+      second++;
+	  if (second >= 59) {
+		  second = 0;
+          minute++;
 
-	  if(second >= 11) {
-
-		  if(minute >= 11)
-		{
-			  clearNumberOnClock(hour);
-		      hour = (hour+1)%12;
-		}
-
-	    	clearNumberOnClock(minute);
-            minute = (minute+1)%12;
-
-
+	      if ((minute)  >= 59) {
+	    	  minute =  0;
+	    	  hour = (hour+1)%12;
+	      }
 	  }
 
-
-	 clearNumberOnClock(second);
-
-	  second = (second+1)%12;
-
 	  setNumberOnClock(hour);
-	  setNumberOnClock(minute);
-	  setNumberOnClock(second);
+	  setNumberOnClock(minute/5);
+	  setNumberOnClock(second/5);
 
-	  HAL_Delay(100);
-
-
-    /* USER CODE END WHILE */
-    /* USER CODE BEGIN 3 */
+	  HAL_Delay(10);
   }
   /* USER CODE END 3 */
 }
